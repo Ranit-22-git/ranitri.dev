@@ -245,35 +245,64 @@ function initCGPAChart() {
     { label: 'S5', value: 9.37 },
     { label: 'S6', value: 9.67 }
   ];
+
   const max = 10;
 
-  data.forEach(d => {
+  // Prevent duplicate bars if function runs more than once
+  container.innerHTML = '';
+
+  data.forEach((d) => {
     const wrap = document.createElement('div');
     wrap.className = 'cgpa-bar-wrap';
+
+    const percentage = (d.value / max) * 100;
+
     wrap.innerHTML = `
       <span class="cgpa-value">${d.value.toFixed(2)}</span>
-      <div class="cgpa-bar" data-height="${(d.value / max) * 100}"></div>
+
+      <div
+        class="cgpa-bar"
+        data-height="${percentage}"
+        data-value="${d.value.toFixed(2)}"
+        data-semester="${d.label}"
+        role="img"
+        aria-label="${d.label}: CGPA ${d.value.toFixed(2)} out of 10"
+      ></div>
+
       <span class="cgpa-label">${d.label}</span>
     `;
+
     container.appendChild(wrap);
   });
 
   const bars = container.querySelectorAll('.cgpa-bar');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        bars.forEach((bar, i) => {
+
+  // Start with all bars collapsed
+  bars.forEach((bar) => {
+    bar.style.height = '0%';
+  });
+
+  const observer = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        bars.forEach((bar, index) => {
           setTimeout(() => {
-            bar.style.height = bar.dataset.height + '%';
-          }, i * 90);
+            bar.style.height = `${bar.dataset.height}%`;
+          }, index * 100);
         });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
+
+        observerInstance.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.3
+    }
+  );
+
   observer.observe(container);
 }
-
 // --------------------------------------------
 // Scroll cue: hide after scrolling
 // --------------------------------------------
