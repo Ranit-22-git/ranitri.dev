@@ -599,3 +599,7 @@ main { position: relative; z-index: 2; }
   .tl-media { min-height: 160px; order: -1; }
   .hobbies-grid { grid-template-columns: 1fr; max-width: none; }
 }
+
+.hero-sub {
+  text-align: justify;
+}
