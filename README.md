@@ -1,6 +1,6 @@
 <div align="center">
 
-# Ranit Ri — Portfolio
+# Ranit Ri — Portfolio -
 
 ### Engineering the signals of human health.
 
