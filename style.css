@@ -3347,3 +3347,84 @@ main { position: relative; z-index: 2; }
   }
 
 }
+
+/* ==========================================
+   SIGNAL CHIP — FINAL LOOK
+   ========================================== */
+
+.hero .signal-chip {
+  position: absolute !important;
+
+  right: -10px !important;
+  bottom: 20% !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  padding: 9px 14px !important;
+
+  border: 1px solid rgba(62,214,199,.22) !important;
+  border-radius: 999px !important;
+
+  background: rgba(7,17,27,.82) !important;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: #9eabb7 !important;
+
+  font-family: var(--font-mono) !important;
+  font-size: .58rem !important;
+  line-height: 1 !important;
+  letter-spacing: .04em !important;
+
+  white-space: nowrap !important;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.28),
+    inset 0 0 15px rgba(62,214,199,.025);
+
+  z-index: 20 !important;
+
+  animation: signalFloat 4s ease-in-out infinite !important;
+}
+
+.hero .signal-chip .chip-dot {
+  display: block !important;
+
+  width: 5px !important;
+  height: 5px !important;
+
+  flex: 0 0 5px !important;
+
+  border-radius: 50% !important;
+
+  background: var(--cyan) !important;
+
+  box-shadow:
+    0 0 9px var(--cyan) !important;
+}
+
+@keyframes signalFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+
+/* Remove the extra floating circle above the photo */
+.hero .name-orbit {
+  /* keep the circle next to Ri, if visible */
+}
+
+.hero .eit-frame > .avatar-glow {
+  pointer-events: none;
+}
